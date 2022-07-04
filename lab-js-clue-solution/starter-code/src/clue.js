@@ -1,18 +1,21 @@
-// Suspects Collection
+// ITERATION 1
+
+// Suspects Array
+
 const suspectsArray = [];
 
-let mrGreen = {
+const mrGreen = {
   firstName: 'Jacob',
   lastName: 'Green',
   occupation: 'Entrepreneur',
   age: 45,
-  description: ' He has a lot of connections',
+  description: 'He has a lot of connections',
   image:
     'https://pbs.twimg.com/profile_images/506787499331428352/65jTv2uC.jpeg',
   color: 'green'
 };
 
-let drOrchid = {
+const drOrchid = {
   firstName: 'Doctor',
   lastName: 'Orchid',
   occupation: 'Scientist',
@@ -22,7 +25,7 @@ let drOrchid = {
   color: 'white'
 };
 
-let profPlum = {
+const profPlum = {
   firstName: 'Victor',
   lastName: 'Plum',
   occupation: 'Designer',
@@ -33,28 +36,67 @@ let profPlum = {
   color: 'purple'
 };
 
+const missScarlet = {
+  firstName: 'Kasandra',
+  lastName: 'Scarlet',
+  occupation: 'Actor',
+  age: 31,
+  description: 'She is an A-list movie star with a dark past',
+  image:
+    'https://www.radiotimes.com/uploads/images/Original/111967.jpg',
+  color: 'red'
+};
+
+const mrsPeacock = {
+  firstName: 'Eleanor',
+  lastName: 'Peacock',
+  occupation: 'Socialité',
+  age: 36,
+  description: 'She is from a wealthy family and uses her status and money to earn popularity',
+  image: 'https://metrouk2.files.wordpress.com/2016/07/mrs-peacock.jpg',
+  color: 'blue'
+};
+
+const mrMustard = {
+  firstName: 'Jack',
+  lastName: 'Mustard',
+  occupation: 'Retired Football player',
+  age: 62,
+  description: 'He is a former football player who tries to get by on his former glory',
+  image:
+    'https://static.independent.co.uk/s3fs-public/thumbnails/image/2016/07/04/08/unspecified-3.jpg',
+  color: 'yellow'
+};
+
 suspectsArray.push(drOrchid);
 suspectsArray.push(profPlum);
 suspectsArray.push(mrGreen);
-// or: suspectsArray.push(drOrchid, profPlum, mrGreen);
+suspectsArray.push(missScarlet);
+suspectsArray.push(mrsPeacock);
+suspectsArray.push(mrMustard);
 
-let room1 = { name: 'Dining Room' };
-let room2 = { name: 'Conservatory' };
-let room3 = { name: 'Kitchen' };
-let room4 = { name: 'Study' };
-let room5 = { name: 'Library' };
-let room6 = { name: 'Billiard Room' };
-let room7 = { name: 'Lounge' };
-let room8 = { name: 'Ballroom' };
-let room9 = { name: 'Hall' };
-let room10 = { name: 'Spa' };
-let room11 = { name: 'Living Room' };
-let room12 = { name: 'Observatory' };
-let room13 = { name: 'Theater' };
-let room14 = { name: 'Guest House' };
-let room15 = { name: 'Patio' };
 
-// Rooms Collection
+// or: suspectsArray.push(drOrchid, profPlum, mrGreen, missScarlet, mrsPeacock, mrMustard);
+
+/* ********************************************* */
+
+const room1 = { name: 'Dining Room' };
+const room2 = { name: 'Conservatory' };
+const room3 = { name: 'Kitchen' };
+const room4 = { name: 'Study' };
+const room5 = { name: 'Library' };
+const room6 = { name: 'Billiard Room' };
+const room7 = { name: 'Lounge' };
+const room8 = { name: 'Ballroom' };
+const room9 = { name: 'Hall' };
+const room10 = { name: 'Spa' };
+const room11 = { name: 'Living Room' };
+const room12 = { name: 'Observatory' };
+const room13 = { name: 'Theater' };
+const room14 = { name: 'Guest House' };
+const room15 = { name: 'Patio' };
+
+// Rooms Array
 const roomsArray = [
   room1,
   room2,
@@ -73,7 +115,11 @@ const roomsArray = [
   room15
 ];
 
-// Weapons Collection
+
+/* ********************************************* */
+
+// Weapons Array
+
 const weaponsArray = [
   { name: 'rope', weight: 10 },
   { name: 'knife', weight: 8 },
@@ -86,25 +132,35 @@ const weaponsArray = [
   { name: 'pistol', weight: 20 }
 ];
 
-function selectRandom(theArray) {
-  let randomNumber = Math.floor(Math.random() * theArray.length);
-  return theArray[randomNumber];
+/* ********************************************* */
+
+// ITERATION 2
+
+function selectRandom(arr) {
+  const randomIndex = Math.floor(Math.random() * arr.length);
+  const randomElement = arr[randomIndex];
+  return randomElement;
+
+  // or a shorter way:
+  // return arr[randomIndex];
 }
 
 function pickMystery() {
-  let mystery = {};
+  const mystery = {};
 
-  let theSuspect = selectRandom(suspectsArray);
-  let theWeapon = selectRandom(weaponsArray);
-  let theRoom = selectRandom(roomsArray);
+  const randomSuspect = selectRandom(suspectsArray);
+  const randomWeapon = selectRandom(weaponsArray);
+  const randomRoom = selectRandom(roomsArray);
 
-  mystery.suspect = theSuspect;
-  mystery.weapon = theWeapon;
-  mystery.room = theRoom;
+  mystery.suspect = randomSuspect;
+  mystery.weapon = randomWeapon;
+  mystery.room = randomRoom;
 
   return mystery;
 }
 
-function revealMystery(mys) {
-  return `${mys.suspect.firstName} ${mys.suspect.lastName} killed Mr. Boddy using the ${mys.weapon.name} in the ${mys.room.name}!`;
+// ITERATION 3
+
+function revealMystery(mysteryObj) {
+  return `${mysteryObj.suspect.firstName} ${mysteryObj.suspect.lastName} killed Mr. Boddy using the ${mysteryObj.weapon.name} in the ${mysteryObj.room.name}!`;
 }
