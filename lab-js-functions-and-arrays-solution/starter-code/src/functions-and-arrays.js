@@ -19,23 +19,23 @@ const words = [
   'crackpot'
 ];
 
-function findLongestWord(arrOfWords) {
-  if (!arrOfWords.length) return null;
+function findLongestWord(wordsArr) {
+  if (!wordsArr.length) return null;
 
   //to start we take the first word as the longest one
-  let largestWord = arrOfWords[0];
+  let longestWord = wordsArr[0];
 
-  // use for loop to go through the arrOfWords
-  //     word is just a placeholder
-  //        |
-  for (let word of arrOfWords) {
-    // if the current word is longer than the largestWord...
-    if (word.length > largestWord.length) {
-      // ... then that word becomes the new largestWord
-      largestWord = word;
+  // use for loop to go through the wordsArr
+  for (let i = 1; i < wordsArr.length; i++) {
+    const word = wordsArr[i];
+    // if the current word is longer than the longestWord...
+    if (word.length > longestWord.length) {
+      // ... then that word becomes the new longestWord
+      longestWord = word;
     }
   }
-  return largestWord;
+
+  return longestWord;
 }
 
 // findLongestWord(words)
@@ -46,19 +46,35 @@ const numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
 // we will aim to create generic function for calculating sum,
 // to be able to use it with any array of numbers or strings
 
-function sumArray(someArr) {
+function sumNumbers (numbersArr) {
+  if (!numbersArr) return null;
+  let sum = 0;
+
+  for (let i = 0; i < numbersArr.length; i++) {
+    const num = numbersArr[i];
+    // if the current word is longer than the longestWord...
+
+    sum += num;
+  }
+
+  return sum;
+}
+
+
+function sum(someArr) {
   if (!someArr) return null;
   let sum = 0;
-  for (let el of someArr) {
-    // we are adding "typeof" condition to reuse this function
-    // to calculate sum of letters in the array of words
 
-    // we can check the type of elements in the array:
-    // console.log(`Type of el: ${typeof el}`);
+  for (let i = 0; i < someArr.length; i++) {
+    const el = someArr[i];
+    // if the current word is longer than the longestWord...
 
     if (typeof el === 'string') sum += el.length;
+    else if (typeof el === 'object') throw new Error("Unsupported data type sir or ma'am");
+    else if (Array.isArray(el)) throw new Error("Unsupported data type sir or ma'am");
     else sum += el;
   }
+
   return sum;
 }
 
@@ -68,18 +84,20 @@ function sumArray(someArr) {
 // Level 1: Array of numbers
 const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
 
-// kind of manual solution:
-// function averageNumbers(arr) {
-//   // if (!arr) return null;
-//   if (arr.length === 0) return null;
-//   else return sumArray(arr) / arr.length;
-// }
+function averageNumbers(numbersArray) {
+  if (numbersArray.length === 0) {
+    return null;
+  }
+  else {
+    return sumNumbers(numbersArray) / numbersArray.length;
+  };
+}
 
 // we will do the same as before, create a generic function that can be reused no matter what kind of array we work with
 
-function avg(arr) {
-  if (!arr) return null;
-  else return sumArray(arr) / arr.length;
+function avg (arr) {
+  if (arr.length === 0) return null;
+  else return sum(arr) / arr.length;
 }
 
 // instead if (!arr) return null, we can do the following:
@@ -107,26 +125,29 @@ const wordsArr = [
   'palace'
 ];
 
-// super manual solution:
-// function averageWordLength(words) {
-//   if (!words.length) return null;
-//   let wordLengths = [];
-//   for (let word of words) {
-//     wordLengths.push(word.length);
-//   }
-//   return averageNumbers(wordLengths);
-// };
+function averageWordLength(words) {
+  if (!words.length) return null;
+  let wordLengths = [];
+
+  for (let i = 0; i < words.length; i++) {
+    const word = words[i];
+    wordLengths.push(word.length);
+  }  
+
+  return averageNumbers(wordLengths);
+};
 
 // the other way doing the same as above:
-// const averageWordLength = words => {
+// const averageWordLength = (words) => {
 //   if (!words.length) return null;
 //   return words.join('').length / words.length;
 // };
 
-// averageNumbers(wordsArr)
+// averageWordLength(wordsArr)
+
 
 // -------- Iteration #5: Unique arrays --------
-const wordsUnique = [
+const duplicatedWords = [
   'crab',
   'poison',
   'contagious',
@@ -140,24 +161,36 @@ const wordsUnique = [
   'bring'
 ];
 
-const uniquifyArray = words => {
+function uniquifyArray (words) {
+  if (words.length === 0) {
+    return null;
+  }
+
+
   let uniqueArr = [];
   //   for (let i = 0; i < words.length; i++) {
   //     let word = words[i];
-  //     // indexOf() => returns 1 (true) if the word already exists in the array
-  //     // indexOf() => returns -1 (false) if the word doesn't exist in the array
-  //     if (uniqueArr.indexOf(word) < 0) {
-  //       uniqueArr.push(word);
-  //     }
   //   }
 
-  for (let word of words) {
+  for (let i = 0; i < words.length; i++) {
+    const word = words[i];
     if (!uniqueArr.includes(word)) uniqueArr.push(word);
-  }
+
+    /* 
+    the other way doing the same as above:
+    - indexOf() => returns 1 (true) if the word already exists in the array
+    - indexOf() => returns -1 (false) if the word doesn't exist in the array
+    */
+    // if (uniqueArr.indexOf(word) < 0) {
+    //   uniqueArr.push(word);
+    // }
+    
+  }    
+
   return uniqueArr;
 };
 
-// uniquifyArray(words)
+// uniquifyArray(duplicatedWords)
 
 // const uniquifyArray = words => [ ...new Set(words) ];
 
@@ -174,28 +207,48 @@ const wordsFind = [
 ];
 
 // super manual solution:
-// function doesWordExist(someArr, someWord) {
-//   let doesExist = false;
-//   for(let i=0; i<someArr.length; i++){
-//     if(someArr[i] === someWord){
-//       doesExist = true;
-//     }
-//   }
-//   return doesExist;
-// }
+function doesWordExist(wordsArr, word) {
+  if (wordsArr.length === 0) {
+    return null;
+  }
+
+  let doesExist = false;
+
+  for (let i = 0; i < wordsArr.length; i++){
+    if (wordsArr[i] === word){
+      doesExist = true;
+    }
+  }
+  
+  return doesExist;
+
+}
+
 
 // better then above:
-// function doesWordExist(arr, word){
-//   for (let el of arr){
-//     if (el === word) return true;
+// function doesWordExist(wordsArr, word){
+//   if (wordsArr.length === 0) {
+//     return null;
 //   }
+
+//   for (let i = 0; i < wordsArr.length; i++){
+//     if (wordsArr[i] === word){
+//       return true;
+//     }
+//   }
+
 //   return false;
 // }
 
 // the shortest and the cleanest:
-function doesWordExist(arr, word) {
-  return arr.includes(word);
-}
+// function doesWordExist(wordsArr, word) {
+//   if (wordsArr.length === 0) {
+//     return null;
+//   }
+//   else {
+//     return wordsArr.includes(word);
+//   }
+// }
 
 // doesWordExist(wordsFind, "machine"); // true
 // doesWordExist(wordsFind, "crab"); // false
@@ -215,11 +268,15 @@ const wordsCount = [
   'matter'
 ];
 
-function howManyTimes(arr, word) {
+function howManyTimes(wordsArr, word) {
   let count = 0;
-  for (let el of arr) {
-    if (el === word) count++;
+
+  for (let i = 0; i < wordsArr.length; i++){
+    if (wordsArr[i] === word) {
+      count++;
+    }
   }
+
   return count;
 }
 
