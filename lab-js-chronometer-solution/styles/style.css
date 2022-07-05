@@ -46,7 +46,7 @@ body {
   text-align: right;
 }
 
-#milliseconds {
+#centiseconds {
   font-size: 36px;
   margin-top: -15px;
   position: absolute;

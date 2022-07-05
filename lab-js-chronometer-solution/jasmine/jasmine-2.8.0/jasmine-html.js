@@ -104,7 +104,7 @@ jasmineRequire.HtmlReporter = function(j$) {
 
     var failures = [];
     this.specDone = function(result) {
-      if(noExpectations(result) && typeof console !== 'undefined' && typeof console.error !== 'undefined') {
+      if (noExpectations(result) && typeof console !== 'undefined' && typeof console.error !== 'undefined') {
         console.error('Spec \'' + result.fullName + '\' has no expectations.');
       }
 
@@ -137,9 +137,12 @@ jasmineRequire.HtmlReporter = function(j$) {
 
         for (var i = 0; i < result.failedExpectations.length; i++) {
           var expectation = result.failedExpectations[i];
+          var stringStart = expectation.stack.indexOf("at UserContext.<anonymous>");
+          var shortStackTrace = expectation.stack.slice(stringStart);
           messages.appendChild(createDom('div', {className: 'jasmine-result-message'}, expectation.message));
-          messages.appendChild(createDom('div', {className: 'jasmine-stack-trace'}, expectation.stack));
+          messages.appendChild(createDom('div', {className: 'jasmine-stack-trace'}, shortStackTrace));
         }
+
 
         failures.push(failure);
       }
@@ -154,8 +157,8 @@ jasmineRequire.HtmlReporter = function(j$) {
       var labName = find('.jasmine-labname');
       var alert = find('.jasmine-alert');
       var order = doneResult && doneResult.order;
-      labName.appendChild(createDom('img', {src: 'jasmine/jasmine-2.8.0/ironhack.png'}, ''));
-      labName.appendChild(createDom('span', {}, 'Lab - JS | JavaScript Chronometer'));
+      labName.appendChild(createDom('img', {src: 'jasmine/jasmine-2.8.0/ironhack-logo.png'}, ''));
+      labName.appendChild(createDom('span', {}, 'LAB | JS Chronometer'));
       alert.appendChild(createDom('span', {className: 'jasmine-duration'}, 'finished in ' + timer.elapsed() / 1000 + 's'));
 
       banner.appendChild(
@@ -322,7 +325,10 @@ jasmineRequire.HtmlReporter = function(j$) {
           setMenuModeTo('jasmine-spec-list');
         };
 
-        setMenuModeTo('jasmine-failure-list');
+        // Set the default list to be shown - test descriptions or failures
+        // setMenuModeTo('jasmine-failure-list');
+        setMenuModeTo('jasmine-spec-list');
+
 
         var failureNode = find('.jasmine-failures');
         for (i = 0; i < failures.length; i++) {
