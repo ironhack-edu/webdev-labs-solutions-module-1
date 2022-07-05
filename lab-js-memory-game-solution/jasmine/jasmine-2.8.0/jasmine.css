@@ -4,7 +4,7 @@ body { overflow-y: scroll; }
   display: flex;
   align-items: center;
   justify-content: left;
-  background-color: #32c3ff;
+  background-color: #2e354c; /* #32c3ff */
   padding: 8px;
 }
 
