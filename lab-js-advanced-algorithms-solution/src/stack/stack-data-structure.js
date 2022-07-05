@@ -1,4 +1,4 @@
-class StackDataStructure {
+class Stack {
   constructor() {
     this.stackControl = [];
     this.MAX_SIZE = 10;
@@ -23,15 +23,44 @@ class StackDataStructure {
       this.stackControl.push(item);
       return this.stackControl;
     } else {
-      return 'Stack Overflow';
+      throw new Error('STACK_OVERFLOW');
     }
   }
 
+  
   pop() {
     if (this.stackControl.length === 0) {
-      return 'Stack Underflow';
+      throw new Error('STACK_UNDERFLOW');
     } else {
       return this.stackControl.pop();
     }
   }
 }
+
+// class Stack {
+//   constructor() {
+//     this.stackControl = [];
+//     this.MAX_SIZE = 10;
+//   }
+
+//   canPush() {
+//     // ... your code goes here
+//   }
+
+//   isEmpty() {
+//     // ... your code goes here
+//   }
+
+//   push(item) {
+//     // ... your code goes here
+//   }
+
+//   pop() {
+//     // ... your code goes here
+//   }
+
+//   display() {
+//     // ... your code goes here
+//   }  
+// }
+

@@ -5,7 +5,7 @@ const warningBottomQueue = document.querySelector('#queue-container .warning-bot
 const addQueue = document.querySelector('.btn-add-queue');
 const dequeue = document.querySelector('.btn-take-dequeue');
 
-const queue = new QueueDataStructure();
+const queue = new Queue();
 
 const clearQueueInput = () => {
   queueInput.value = '';

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2008-2016 Pivotal Labs
+Copyright (c) 2008-2017 Pivotal Labs
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -43,6 +43,7 @@ jasmineRequire.HtmlReporter = function(j$) {
       onThrowExpectationsClick = options.onThrowExpectationsClick || function() {},
       onRandomClick = options.onRandomClick || function() {},
       addToExistingQueryString = options.addToExistingQueryString || defaultQueryString,
+      filterSpecs = options.filterSpecs,
       timer = options.timer || noopTimer,
       results = [],
       specsExecuted = 0,
@@ -60,6 +61,7 @@ jasmineRequire.HtmlReporter = function(j$) {
           createDom('span', {className: 'jasmine-version'}, j$.version)
         ),
         createDom('ul', {className: 'jasmine-symbol-summary'}),
+        createDom('div', {className: 'jasmine-labname'}),
         createDom('div', {className: 'jasmine-alert'}),
         createDom('div', {className: 'jasmine-results'},
           createDom('div', {className: 'jasmine-failures'})
@@ -102,7 +104,7 @@ jasmineRequire.HtmlReporter = function(j$) {
 
     var failures = [];
     this.specDone = function(result) {
-      if(noExpectations(result) && typeof console !== 'undefined' && typeof console.error !== 'undefined') {
+      if (noExpectations(result) && typeof console !== 'undefined' && typeof console.error !== 'undefined') {
         console.error('Spec \'' + result.fullName + '\' has no expectations.');
       }
 
@@ -135,9 +137,12 @@ jasmineRequire.HtmlReporter = function(j$) {
 
         for (var i = 0; i < result.failedExpectations.length; i++) {
           var expectation = result.failedExpectations[i];
+          var stringStart = expectation.stack.indexOf("at UserContext.<anonymous>");
+          var shortStackTrace = expectation.stack.slice(stringStart);
           messages.appendChild(createDom('div', {className: 'jasmine-result-message'}, expectation.message));
-          messages.appendChild(createDom('div', {className: 'jasmine-stack-trace'}, expectation.stack));
+          messages.appendChild(createDom('div', {className: 'jasmine-stack-trace'}, shortStackTrace));
         }
+
 
         failures.push(failure);
       }
@@ -149,8 +154,11 @@ jasmineRequire.HtmlReporter = function(j$) {
 
     this.jasmineDone = function(doneResult) {
       var banner = find('.jasmine-banner');
+      var labName = find('.jasmine-labname');
       var alert = find('.jasmine-alert');
       var order = doneResult && doneResult.order;
+      labName.appendChild(createDom('img', {src: 'jasmine/jasmine-2.8.0/ironhack-logo.png'}, ''));
+      labName.appendChild(createDom('span', {}, 'Lab - Name of the LAB'));
       alert.appendChild(createDom('span', {className: 'jasmine-duration'}, 'finished in ' + timer.elapsed() / 1000 + 's'));
 
       banner.appendChild(
@@ -209,7 +217,7 @@ jasmineRequire.HtmlReporter = function(j$) {
 
       if (specsExecuted < totalSpecsDefined) {
         var skippedMessage = 'Ran ' + specsExecuted + ' of ' + totalSpecsDefined + ' specs - run all';
-        var skippedLink = order && order.random ? '?random=true' : '?';
+        var skippedLink = addToExistingQueryString('spec', '');
         alert.appendChild(
           createDom('span', {className: 'jasmine-bar jasmine-skipped'},
             createDom('a', {href: skippedLink, title: 'Run all specs'}, skippedMessage)
@@ -263,6 +271,9 @@ jasmineRequire.HtmlReporter = function(j$) {
         var specListNode;
         for (var i = 0; i < resultsTree.children.length; i++) {
           var resultNode = resultsTree.children[i];
+          if (filterSpecs && !hasActiveSpec(resultNode)) {
+            continue;
+          }
           if (resultNode.type == 'suite') {
             var suiteListNode = createDom('ul', {className: 'jasmine-suite', id: 'suite-' + resultNode.result.id},
               createDom('li', {className: 'jasmine-suite-detail'},
@@ -314,7 +325,10 @@ jasmineRequire.HtmlReporter = function(j$) {
           setMenuModeTo('jasmine-spec-list');
         };
 
-        setMenuModeTo('jasmine-failure-list');
+        // Set the default list to be shown - test descriptions or failures
+        // setMenuModeTo('jasmine-failure-list');
+        setMenuModeTo('jasmine-spec-list');
+
 
         var failureNode = find('.jasmine-failures');
         for (i = 0; i < failures.length; i++) {
@@ -389,6 +403,20 @@ jasmineRequire.HtmlReporter = function(j$) {
     function noExpectations(result) {
       return (result.failedExpectations.length + result.passedExpectations.length) === 0 &&
         result.status === 'passed';
+    }
+
+    function hasActiveSpec(resultNode) {
+      if (resultNode.type == 'spec' && resultNode.result.status != 'disabled') {
+        return true;
+      }
+
+      if (resultNode.type == 'suite') {
+        for (var i = 0, j = resultNode.children.length; i < j; i++) {
+          if (hasActiveSpec(resultNode.children[i])) {
+            return true;
+          }
+        }
+      }
     }
   }
 
