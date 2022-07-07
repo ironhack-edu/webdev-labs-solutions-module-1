@@ -126,19 +126,18 @@ function orderAlphabetically(moviesArray) {
 
 // BONUS - Iteration 7: Time Format - Turn duration of the movies from hours to minutes
 function turnHoursToMinutes(moviesArray) {
-  const moviesArrayCopy = [...moviesArray];
 
-  const newArr = moviesArrayCopy.map(function (movie) {
+  const newArr = moviesArray.map(function (movie) {
     return durationToMinutes(movie);
   });
 
   function durationToMinutes(movie) {
-    const movieCopy = { ...movie };
-    if (typeof movieCopy.duration === "number") {
-      return movieCopy;
+
+    if (typeof movie.duration === "number") {
+      return movie;
     }
     
-    movieDuration = movieCopy.duration;
+    movieDuration = movie.duration;
 
     const timeString = movieDuration.split(" ");
     // Example:
@@ -156,8 +155,8 @@ function turnHoursToMinutes(moviesArray) {
       }
     }, 0);
 
-    movieCopy.duration = minutesDuration;
-    return movieCopy;
+    movie.duration = minutesDuration;
+    return movie;
   }
 
   return newArr;
