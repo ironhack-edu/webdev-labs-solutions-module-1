@@ -43,19 +43,27 @@ const generateWarningQueue = type => {
 };
 
 const addToQueue = () => {
-  if (queue.enqueue(queueInput.value) === 'Queue Overflow') {
-    generateWarningQueue('overflow');
-  } else {
+  try {
+    queue.enqueue(queueInput.value);
+
     clearQueueInput();
     generateListQueue();
   }
+  catch (error) {
+    generateWarningQueue('overflow');
+  }
+
+
 };
 
 const removeFromQueue = () => {
-  if (queue.dequeue() === 'Queue Underflow') {
-    generateWarningQueue('underflow');
-  } else {
+  try {
+    queue.dequeue();
+
     generateListQueue();
+  }
+  catch (error) {
+    generateWarningQueue('underflow');
   }
 };
 
