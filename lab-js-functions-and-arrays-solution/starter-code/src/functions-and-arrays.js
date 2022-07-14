@@ -73,10 +73,18 @@ function sum(someArr) {
     const el = someArr[i];
     // if the current word is longer than the longestWord...
 
-    if (typeof el === 'string') sum += el.length;
-    else if (typeof el === 'object') throw new Error("Unsupported data type sir or ma'am");
-    else if (Array.isArray(el)) throw new Error("Unsupported data type sir or ma'am");
-    else sum += el;
+    if (typeof el === 'string') {
+      sum += el.length;
+    }
+    else if (typeof el === 'object') {
+      return undefined;
+    }
+    else if (Array.isArray(el)) {
+      return undefined;
+    }
+    else {
+      sum += el;
+    }
   }
 
   return sum;
