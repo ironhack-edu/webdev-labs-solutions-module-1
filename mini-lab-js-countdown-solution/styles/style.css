@@ -1,0 +1,112 @@
+body, html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Arial', sans-serif;
+  background-color: #f3f3f3;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#time {
+  font-size: 120px; /* Doubled font size */
+  font-weight: bold; /* Bold font */
+  color: #084fba; /* Space mission inspired blue */
+  background-color: transparent;
+  border: 8px solid #007bff; /* Thick border with the same color */
+  padding: 20px;
+  border-radius: 50%; /* Circular shape */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  width: 250px; /* Adjusted for larger font size */
+  height: 250px; /* Adjusted for larger font size */
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 0 auto;
+  margin-top: 20px;
+  background-color: #084fba;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background-color: #007bff;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+
+.toast {
+  visibility: hidden;
+  min-width: 200px;
+  min-height: 20px;
+  background-color: #084fba;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  bottom: 26px;
+  font-size: 17px;
+  z-index: 1;
+  transform: translateX(-50%); /* Center the toast dynamically */ 
+  overflow: hidden;
+}
+
+.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.9s 2.5s;
+  animation: fadein 0.5s, fadeout 0.9s 2.5s;
+}
+
+
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 26px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 26px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 26px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 26px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+#close-toast {
+  position: absolute;
+  top: 4px;
+  right: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  overflow: hidden;
+}
