@@ -1,0 +1,172 @@
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+header {
+    padding: 0 20px;
+}
+
+.container {
+    height: 540px;
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+#quizView, #endView {
+    overflow-y: auto;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.view {
+    text-align: center;
+    margin-top: 20px;
+}
+
+button {
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 160px;
+}
+
+.button-primary {
+    background-color: #4caf50;
+}
+
+.button-primary:hover {
+    background-color: #46a049;
+}
+
+.button-secondary {
+    background-color: #333;
+}
+
+.button-secondary:hover {
+    background-color: #1e1e1e;
+}
+.title {
+    margin-top: 20px;
+    margin-bottom: -12px;
+}
+
+
+button:hover {
+    background-color: #4cae4c;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 10px 0;
+}
+
+input[type="radio"] {
+    margin-right: 10px;
+}
+
+.emphasis, #startQuestionsCount, #questionCount, #resultQuestionsCount {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.content {
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+#choices {
+    min-width: 25px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+#quizDescription, #question, #result {
+    font-size: 18px;
+    font-style: italic;
+    color: #333;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 12px;
+}
+
+#quizDescription {
+    margin-bottom: 20px;
+}
+
+
+#progress {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+#progressBar {
+    height: 20px;
+    background-color: #4caf50;
+    width: 0%;
+    border-radius: 8px;
+}
+
+#result-progress {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.divider {
+    width: 100%;
+    height: 20px;
+    background-color: #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+#resultProgressBar {
+    width: 100%;
+    height: 20px;
+    background-color: #4caf50;
+    width: 100%;
+    border-radius: 8px;
+}
+
+#timeRemaining {
+    font-size: 14px;
+    font-style: italic;
+    color: #333;
+    margin: 0 auto;
+    margin-top: -35px;
+    margin-bottom: 12px;
+}

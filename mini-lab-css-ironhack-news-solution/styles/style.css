@@ -1,0 +1,302 @@
+/* CSS RESET - do not remove */
+/* Reset default browser styles and provide a consistent starting point */
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+  
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+  
+body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+  margin: 0;
+  padding: 0;
+  font-weight: lighter;
+}
+
+
+/*  DO NOT REMOVE - Styling for the label showing the viewport width */
+.viewport-dimensions {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: #ee4545;
+  color: #fff;
+  font-weight: 500;
+  padding: 5px 8px;
+  font-size: 14px;
+}
+  
+/* STYLES */
+
+/*  Fonts */
+body {
+  font-family: "Helvetica", sans-serif;
+}
+
+/* Basic styles */
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*  Font sizes */
+p {
+  font-size: 1em;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+h2 {
+  font-size: 2em;
+  margin-bottom: 1em;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
+/* Header and Navbar */
+header {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+}
+
+.newspaper-name {
+  font-size: 24px;
+  padding: 10px;
+  border-bottom: 1px solid white;
+}
+
+.navbar {
+  list-style-type: none;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.navbar li {
+  width: 130px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #ffffff;
+}
+
+.navbar li:last-child {
+  border-right: none;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Articles */
+.main-article {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  display: flex;
+}
+
+.main-article img {
+  width: 100%;
+  height: auto;
+}
+
+.main-article .image {
+  width: 50%;
+  padding: 0 20px;
+  height: auto;
+}
+
+.main-article .content {
+  width: 50%;
+  padding: 0 20px;
+  height: auto;
+}
+
+.articles-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  padding: 20px;
+}
+
+.article {
+  width: 29%;
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+
+.article img {
+  width: 100%;
+  height: auto;
+}
+
+.article h2 {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.article p {
+  margin-top: 10px;
+}
+
+.btn {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: bold;
+  text-decoration: none;
+  margin-top: 30px;
+}
+
+.btn:hover {
+  background-color: #555;
+}
+
+.btn-blue {
+  background-color: #007bff;
+}
+
+.menu-icon {
+  display: none;
+}
+  
+/* Write your CSS below */
+
+/* Iteration 1 | Mobile Screens (width < 760px) */
+
+@media (max-width: 760px) {
+
+/* Change the flex-direction of the navbar to column to display the links vertically */
+  .navbar {
+    flex-direction: column;
+  }
+
+  /* Remove the right border from the navbar links and make them take full width as they will be stacked vertically */
+  .navbar li {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ffffff;
+  }
+  
+  /* Change the flex direction of the main article to column to display the image and content one below the other */
+  .main-article {
+    flex-direction: column;
+  }
+  
+  /* Change the width of the image and content of the main article to 100% so that they take full width */
+  .main-article .image {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .main-article .content {
+    width: 100%;
+  }
+  
+  /* Change the flex direction of the articles container to column to display the articles one below the other */
+  .articles-container {
+    flex-direction: column;
+    padding: 0;
+  }
+  
+  .main-article, .article {
+    width: 90%;
+    margin-bottom: 30px;
+  }
+}
+
+/* Iteration 2 | Small Screens (width > 760px and width < 1024px) */
+@media (min-width: 760px) and (max-width: 1024px) {
+  .navbar li {
+    width: 33.33%;
+    border-right: 1px solid #ffffff;
+    border-bottom: none;
+  }
+
+  .main-article {
+    flex-direction: row;
+  }
+
+  .main-article .image {
+    width: 50%;
+  }
+
+  .main-article .content {
+    width: 50%;
+  }
+
+  .articles-container {
+    flex-direction: row;
+  }
+
+  .article {
+    width: 44%;
+    margin-bottom: 30px;
+  }
+}
+
+
+/* Bonus: Iteration 3 | Hide the Navbar Links */
+/* 
+Bonus: Iteration 3 | Small Mobile Screens (width < 480px)
+
+In this bonus iteration, your task is to **hide the "Navbar" links on small mobile screens** :iphone: and instead display the *"menu"* icon. 
+
+To do this, you will need to add a new element to the `index.html` to display the menu icon and add the necessary styles to the `style.css` file.
+You can find the menu icon in the `images` folder.
+
+The final result should look like in the below image.
+
+*/
+
+@media (max-width: 480px) {
+  .newspaper-name {
+    border-bottom: none;
+  }
+  .navbar li {
+    display: none;
+  }
+
+  .menu {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .menu-icon {
+    width: 30px;
+    height: auto;
+    /* Change from "display: none" set above to "display: inline" to show the element */
+    display: inline;
+  }
+  
+  main {
+    padding: 8px 0px;
+  }
+
+  .main-article {
+    padding: 10px 1px;
+  }
+}
