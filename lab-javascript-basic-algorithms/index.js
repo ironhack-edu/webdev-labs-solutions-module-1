@@ -66,7 +66,10 @@ console.log("newNavigatorName", newNavigatorName);
 // 3.3 Compare strings lexicographically
 // https://riptutorial.com/javascript/example/5388/comparing-strings-lexicographically
 
-var compareTheName = driver.localeCompare(navigator);
+const nameDriver = "Omar";
+const nameNavigator = "Luis";
+
+var compareTheName = nameDriver.localeCompare(nameNavigator);
 // returns -1 if first string `driver` occurs alphabetically before `navigator`
 // returns 1 if first string `driver` occurs alphabetically after `navigator`
 // returns 0 if both string `driver` and `navigator` are the same
@@ -81,14 +84,14 @@ if (compareTheName == -1) {
 
 // Another way of comparing the string lexographically
 /*
-if(driver === navigator) {
+if(nameDriver === nameNavigator) {
   console.log("What?! You both have the same name?");
 }
 
-if (driver > navigator) {
+if (nameDriver > nameNavigator) {
   console.log("Yo, the navigator goes first definitely.");
 }
-else if (driver < navigator) {
+else if (nameDriver < nameNavigator) {
   console.log("The driver's name goes first");
 }
 */
