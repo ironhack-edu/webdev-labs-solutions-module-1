@@ -127,15 +127,19 @@ describe("Quiz", () => {
     });
 
     it("should shuffle the items in the 'questions' array", () => {
-        // Array with questions to be used in the test and passed to the Quiz constructor
+      // Array with questions to be used in the test and passed to the Quiz constructor
       const testQuestions = ["question1", "question2", "question3"];
+
       // Instantiate a new Quiz object with the test questions
       const quiz = new Quiz(testQuestions, 60, 60);
+
       // Call the shuffleQuestions() method to shuffle the questions array in the quiz
       quiz.shuffleQuestions();
+
       // Check if the questions array is not equal to the original array (it has been changed/shuffled)
-      expect(quiz.questions).not.toEqual(testQuestions);
-    });
+      expect(quiz.questions).not.toEqual(["question1", "question2", "question3"]);
+      expect(quiz.questions.length).toEqual(3);
+  });
   });
 
   describe("checkAnswer() method", () => {

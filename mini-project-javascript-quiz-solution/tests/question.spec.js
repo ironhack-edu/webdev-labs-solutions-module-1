@@ -84,11 +84,13 @@ describe("Question", () => {
       
       // Instantiate a new Question object with the test choices array
       const question = new Question("test", testChoices, "test");
+
       // Call the shuffleChoices() method on the Question object
       question.shuffleChoices();
-
+      
       // Check that the 'choices' property of the Question object is not equal to the test choices array (i.e. it has been changed/shuffled)
-      expect(question.choices).not.toEqual(testChoices);
+      expect(question.choices).not.toEqual(["choice1", "choice2", "choice3"]);
+      expect(question.choices.length).toEqual(3);
     });
   });
 });
