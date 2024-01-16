@@ -69,7 +69,7 @@ console.log("newNavigatorName", newNavigatorName);
 const nameDriver = "Omar";
 const nameNavigator = "Luis";
 
-var compareTheName = nameDriver.localeCompare(nameNavigator);
+const compareTheName = nameDriver.localeCompare(nameNavigator);
 // returns -1 if first string `driver` occurs alphabetically before `navigator`
 // returns 1 if first string `driver` occurs alphabetically after `navigator`
 // returns 0 if both string `driver` and `navigator` are the same
