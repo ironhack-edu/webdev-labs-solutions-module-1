@@ -16,24 +16,33 @@ class Quiz {
   }
 
   shuffleQuestions() {
-    if (!this.questions || !this.questions.length) {
-      return undefined;
+    for (let i = 0; i < this.questions.length; i++) {
+      const randomIndex = Math.floor(Math.random() * (i + 1));
+      
+      const temp = this.questions[i];
+      this.questions[i] = this.questions[randomIndex];
+      this.questions[randomIndex] = temp;
     }
-
-    const shuffledQuestions = [];
-    let last = this.questions.length;
-
-    while (last > 0) {
-      last--;
-      const randomIndex = Math.floor(Math.random() * last);
-      const randomQuestion = this.questions[randomIndex];
-      shuffledQuestions.push(randomQuestion);
-      this.questions.splice(randomIndex, 1);
-    }
-
-    this.questions = shuffledQuestions;
-    return this.questions;
   }
+  // // Another way of doing it:
+  // shuffleQuestions() {
+  //   if (!this.questions || !this.questions.length) {
+  //     return undefined;
+  //   }
+
+  //   const shuffledQuestions = [];
+  //   let last = this.questions.length;
+
+  //   while (last > 0) {
+  //     last--;
+  //     const randomIndex = Math.floor(Math.random() * last);
+  //     const randomQuestion = this.questions[randomIndex];
+  //     shuffledQuestions.push(randomQuestion);
+  //     this.questions.splice(randomIndex, 1);
+  //   }
+
+  //   this.questions = shuffledQuestions;
+  // }
 
   checkAnswer(answer) {
     const question = this.getQuestion();
