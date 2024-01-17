@@ -17,6 +17,11 @@ function startCountdown() {
   timer = setInterval(() => {
     timeElement.textContent = remainingTime;
 
+    if (remainingTime === 0) {
+      clearInterval(timer);
+      showToast(" Lift off! 🚀");
+    }
+
     // BONUS: ITERATION 5: More Toasts
     if (remainingTime === 10) {
       showToast("⏰ Final countdown! ⏰");
@@ -27,12 +32,10 @@ function startCountdown() {
     }
     // ::: END OF BONUS
 
-    if (remainingTime === 0) {
-      clearInterval(timer);
-      showToast(" Lift off! 🚀");
-    }
-
+    
+    // IMPORTANT: Remember to decrement the remaining time on each interval
     remainingTime--;
+    
   }, 1000);
 
 }
