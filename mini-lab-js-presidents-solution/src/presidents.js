@@ -1,22 +1,3 @@
-// sort numbers
-// [3,1,2].sort((a, b) => {return a - b})
-// [3,1,2].sort((a, b) => a - b)
-// ["b","a","c"].sort((a, b) => a.localeCompare(b))
-// [{name: "bob", score: 5},{name: "sarah", score: 5}].sort((a, b) => {a.name.localeCompare(b.name)})
-
-// map example :
-// [{name: "bob", score: 5},{name: "sarah", score: 5}].map((e) => {
-// e.score += 5;
-// return e
-// })
-// [{name: "bob", score: 10},{name: "sarah", score: 10}]
-// let totalScore = 0;
-// [{name: "bob", score: 5},{name: "sarah", score: 5}].forEach((e) => {
-// totalScore += e.score;
-// })
-// [1,2,3,4,5]
-// [1,2,3,4,5].reduce((acc, curr, idx, array)=>{ return acc + curr }, 0)
-
 const presidents = [
   {
     id: 1,
