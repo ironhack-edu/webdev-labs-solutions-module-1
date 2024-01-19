@@ -232,7 +232,7 @@ const dictionaryExample = {
 
 
 
-**Create a function** named **`createBooks()`** that takes one argument - `dictionary` which is an object having the same structure as the `dictionaryExample` shown above.
+**Create a function** named **`booksByAuthor()`** that takes one argument - `dictionary` which is an object having the same structure as the `dictionaryExample` shown above.
 
 <br>
 
