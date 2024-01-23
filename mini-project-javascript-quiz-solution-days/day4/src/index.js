@@ -190,4 +190,50 @@ document.addEventListener("DOMContentLoaded", () => {
     // 3. Update the result container (div#result) inner text to show the number of correct answers out of total questions
     resultContainer.innerText = `You scored ${quiz.correctAnswers} out of ${quiz.questions.length} correct answers!`;
   }
+
+  const restartButton = document.getElementById("restartButton");
+  restartButton.addEventListener("click", function restartQuiz() {
+    // Hide the end view (Results)
+    endView.style.display = "none";
+    // Show the quiz view
+    quizView.style.display = "block";
+    // Reset the currentQuestionIndex to 0
+    quiz.currentQuestionIndex = 0;
+    // Reset the correctAnswers to 0
+    quiz.correctAnswers = 0;
+    // Shuffle the questions
+    quiz.shuffleQuestions();
+    // Show the first question
+    showQuestion();
+
+    
+    /* DAY 4: Reset the timer when the quiz restarts */
+    // Reset the timeRemaining property of the Quiz instance to the initial value
+    quiz.timeRemaining = quizDuration;
+
+    // Update the timer text in the quiz view to the initial value
+    const timeRemainingContainer = document.getElementById("timeRemaining");
+    timeRemainingContainer.innerText = `${minutes}:${seconds}`;
+
+    // Start the timer countdown again 
+    timer = setInterval(() => {
+      // Convert the time remaining in seconds to minutes and seconds, and pad the numbers with zeros if needed
+      const minutes = Math.floor(quiz.timeRemaining / 60).toString().padStart(2, "0");
+      const seconds = (quiz.timeRemaining % 60).toString().padStart(2, "0");
+
+      // Display the time remaining in the time remaining container
+      const timeRemainingContainer = document.getElementById("timeRemaining");
+      timeRemainingContainer.innerText = `${minutes}:${seconds}`;
+
+      // Update the time remaining
+      quiz.timeRemaining--;
+
+      /* DAY 4: Clear the timer interval and show the results when the time runs out */
+      // If the time has run out, show the results
+      if (quiz.timeRemaining <= 0) {
+        clearInterval(timer);
+        showResults();
+      }
+    }, 1000);
+  });
 });
